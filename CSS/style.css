@@ -1,0 +1,179 @@
+:root{
+--dark-gray: hsl(0, 0%, 63%);
+--black: hsl(0, 0%, 0%);
+--white: hsl(0, 0%, 100%);
+--very-dark-gray: hsl(0, 0%, 27%);
+}
+
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'League Spartan', sans-serif;
+}
+
+.main{ /*en la pagina hay 5 secciones*/
+    display: grid;
+    max-width: 1400px;/*Desktop: 1440px*/
+    margin: 0 auto;/*si supera ese tamaño se pone horizontal*/
+    grid-template-columns: 1fr; 
+    grid-template-rows: repeat(5, max-content);
+    grid-template-areas: /*si vemos el diseño de la pagina asi se compone con sus 5 secciones, si cambiamos de lugar algunas comillas, cambia la posicion*/
+    "main"
+    "cta"
+    "image1"
+    "about"
+    "image2";
+}
+
+
+.container{ /*hace que el contenido no se pegue a las esquinas y secontenga*/
+    width: 90%;
+    /* background-color: #000; solo para verificar */
+    margin: 0 auto;
+    overflow: hidden; /*para que todo lo que salga de contenido se esconda*/
+    padding: 60px 0 ;
+}
+
+.main__hero{    
+    grid-area: main;    
+    background-image: url("../images/desktop-image-hero-1.jpg");
+    min-height: 500px;
+    background-size: cover;/*para que se ajuste al elemento su tamaño*/
+    background-position: center;/*centrar imagen de fondo*/
+}
+
+.main__nav{
+    display: flex;/*para que se ponga un elemento al lado del otro*/
+}
+
+.main__links{
+    display: none;/*para que desaparezca a los enlaces */
+}
+
+.main__logo{
+    margin: 0 auto;
+}
+
+.main__controls{
+    grid-area: main;/*para que se posicione en main*/
+    align-self: end; /*para alinear grid, mandarlos al final abajo*/
+    justify-self: end;/* alinea grid al final a la derecha*/
+    background-color: var(--black);
+    width: 100px;
+    height: 50px;
+    display: flex;/*para que los elementos se peguen*/
+    justify-content: space-around;
+    align-items: center;
+}
+
+.main__control{
+    height: 40%;
+}
+
+.main__buy{
+    grid-area:cta;
+    margin:  40px;
+}
+
+.main__content{
+    width: 100%;
+    height: 100%;
+    display: flex; /*para que centre los elememtos vertical(solo si es center, pero esta flex start y horizontal*/
+    align-items: flex-start ; /* lo direccional al principio*/
+    justify-content: center; /*horizontal*/
+    flex-direction: column;/*direccion en columna*/
+}
+
+.main__tittle{
+    color: var(--black);
+}
+
+.main__paragraph{
+    line-height: 1.5;/*1.3 es el que viene por defecto*/
+    margin: 1em 0 2em;
+    color: var(--dark-gray);
+}
+
+.main__paragraph--about{
+    margin: 1em 0 0 0 ;
+}
+
+.main__cta{
+    text-decoration: none;
+    color: var(--very-dark-gray);
+    text-transform: uppercase;/*MAYUS*/
+    letter-spacing: 4px;/*espaciado entre letras*/
+}
+
+.main__arrow{
+    margin-left: 20px;
+}
+
+.main__bg{
+    grid-area: image1;
+    min-height: 250px;
+    height: 100%;/*alto al 100 hasta los 250px*/
+    background-image: url("../images/image-about-dark.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.main__about{
+    grid-area: about;
+}
+
+.main__bg--second{
+    grid-area: image2;
+    background-image: url("../images/image-about-light.jpg");
+}
+
+@media(min-width:768px){ /*tamaño de una tablet*/
+    .container{
+        width: 85%;
+        padding: 70px 0;
+    }
+
+    .main{
+        grid-template-columns: repeat(7,1fr);
+        grid-template-areas: 
+        "main main main main  cta cta cta" 
+        "main main main main cta cta cta"
+        "main main main main cta cta cta"
+        "image1 image1 about about about image2 image2"
+        "image1 image1 about about about image2 image2";
+    }
+
+
+    .main__controls{
+        grid-area: cta;
+        justify-self: start; /*para que este al principio de las filas*/
+    }
+
+    .main__logo{
+        margin: 0;/*le quitamos el margin*/
+    }
+
+    .main__hamburguer{
+        display: none; /*para que desaparezca la hamburguesa*/
+    }
+
+    .main__links{/*ul*/
+        padding: 0;
+        display: grid;
+        grid-auto-flow: column; /*para que se pongan uno del lado del otro*/
+        gap: 1em;/*para separar uno del otro*/
+        margin-left: 10%;/*item sepado del logo*/
+    }
+
+    .main__list{
+        list-style: none;/*quitamos viñetas*/
+    }
+
+    .main__link{
+        color: var(--white);/*custom*/
+        text-decoration: none;
+    }
+}
